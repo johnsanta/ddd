@@ -22,7 +22,10 @@ public class Score implements ValueObject<Map<String, Object>> {
 
     @Override
     public Map<String, Object> value() {
-        return Map.of("point", point, "lastDate", lastDate.getTime());
+        return Map.of(
+                "point", point,
+                "lastDate", lastDate.getTime()
+        );
     }
 
 }

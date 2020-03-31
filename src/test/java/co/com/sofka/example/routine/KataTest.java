@@ -1,19 +1,19 @@
 package co.com.sofka.example.routine;
 
 import co.com.sofka.example.routine.values.Challenge;
-import co.com.sofka.example.routine.values.KataId;
+import co.com.sofka.example.routine.values.KataIdentity;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class KataTest {
+
+    //queda pendiente pod validar limitOfTime, preguntar si se deberia pasar a VO
 
     @Test
     public void newKata(){
-        var id = new KataId();
+        var id = new KataIdentity();
         var challenge = new Challenge("hacer ddd", "https://google.com", null);
         var kata = new Kata(id, new Date(), challenge);
 
@@ -23,7 +23,7 @@ class KataTest {
 
     @Test
     public void newKata_as_invalid(){
-        var id = new KataId();
+        var id = new KataIdentity();
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             var challenge = new Challenge("hacer ddd", "url", null);
