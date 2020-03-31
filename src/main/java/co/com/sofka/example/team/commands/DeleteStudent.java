@@ -1,21 +1,17 @@
 package co.com.sofka.example.team.commands;
 
 import co.com.sofka.domain.generic.Command;
-import co.com.sofka.example.team.values.Score;
 import co.com.sofka.example.team.values.StudentIdentity;
 import co.com.sofka.example.team.values.TeamIdentity;
 
-public class ChangeScoreOfStudent extends Command {
-
+public class DeleteStudent extends Command {
     private final TeamIdentity teamIdentity;
     private final StudentIdentity studentIdentity;
-    private final Score score;
 
-    public ChangeScoreOfStudent(TeamIdentity teamIdentity, StudentIdentity studentIdentity, Score score) {
-        super("training.team.changescoreofstudent");
+    public DeleteStudent(TeamIdentity teamIdentity, StudentIdentity studentIdentity) {
+        super("training.team.deletestudent");
         this.teamIdentity = teamIdentity;
         this.studentIdentity = studentIdentity;
-        this.score = score;
     }
 
     public TeamIdentity getTeamIdentity() {
@@ -25,10 +21,4 @@ public class ChangeScoreOfStudent extends Command {
     public StudentIdentity getStudentIdentity() {
         return studentIdentity;
     }
-
-    public Score getScore() {
-        return score;
-    }
-
-
 }
