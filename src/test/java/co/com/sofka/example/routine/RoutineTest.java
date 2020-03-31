@@ -29,17 +29,16 @@ public class RoutineTest extends AggregateEventTest<RoutineIdentity> {
         identity = new RoutineIdentity();
         dojoId = new DojoId();
         Name name = new Name("Routine 1");
-        Period period = new Period(new Date(), new Date(120, 11, 7));
-        Routine routine = new Routine(identity, dojoId, name, period);
+        Routine routine = new Routine(identity, dojoId, name);
 
         List<DomainEvent> listevent = saveEventsFor(routine);
         setIdentity(identity);
 
-        CreatedRoutine expected = new CreatedRoutine(new Name("Routine 1"), new ArrayList<>(), period);
+        CreatedRoutine expected = new CreatedRoutine(new Name("Routine 1"), new ArrayList<>(), null);
         CreatedRoutine createdRoutine = (CreatedRoutine) listevent.get(0);
 
         Assertions.assertEquals(expected.getName().value(), createdRoutine.getName().value());
-        Assertions.assertEquals(expected.getPeriod().value().get("dateStart"), createdRoutine.getPeriod().value().get("dateStart"));
+        Assertions.assertEquals(expected.getPeriod(), createdRoutine.getPeriod());
 
     }
 

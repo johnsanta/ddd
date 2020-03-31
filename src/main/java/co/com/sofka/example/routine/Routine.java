@@ -23,10 +23,10 @@ public class Routine extends AggregateEvent<RoutineIdentity> {
     protected List<Kata> katas;
     protected Period period;
 
-    public Routine (RoutineIdentity routineId, DojoId dojoId, Name name, Period period){
+    public Routine (RoutineIdentity routineId, DojoId dojoId, Name name){
         super(routineId);
         this.dojoId = dojoId;
-        appendChange(new CreatedRoutine(name, new ArrayList<Kata>(), period)).apply();
+        appendChange(new CreatedRoutine(name, new ArrayList<Kata>(), null)).apply();
     }
 
     private Routine(RoutineIdentity entityId, DojoId dojoId) {
