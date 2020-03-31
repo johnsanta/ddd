@@ -21,10 +21,10 @@ public abstract class AggregateEventTest<T extends Identity> {
         this.identity = identity;
     }
 
-    protected List<DomainEvent> saveEventsFor(AggregateEvent<?> team) {
-        List<DomainEvent> events = team.getUncommittedChanges();
+    protected List<DomainEvent> saveEventsFor(AggregateEvent<?> aggregatedRoot) {
+        List<DomainEvent> events = aggregatedRoot.getUncommittedChanges();
         events.forEach(eventStore()::add);//save change
-        team.markChangesAsCommitted();
+        aggregatedRoot.markChangesAsCommitted();
         return events;
     }
 }
