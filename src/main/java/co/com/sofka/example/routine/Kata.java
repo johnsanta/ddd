@@ -4,25 +4,33 @@ package co.com.sofka.example.routine;
 import co.com.sofka.domain.generic.Entity;
 import co.com.sofka.example.routine.values.Challenge;
 import co.com.sofka.example.routine.values.Exercise;
-import co.com.sofka.example.routine.values.KataId;
+import co.com.sofka.example.routine.values.KataIdentity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Kata extends Entity<KataId> {
+public class Kata extends Entity<KataIdentity> {
 
     protected List<Exercise> exercises;
     protected Date limitOfTime;
     protected Challenge challenge;
 
-    public Kata(KataId entityId, Date limitOfTime, Challenge challenge){
+    public Kata(KataIdentity entityId, Date limitOfTime, Challenge challenge, ArrayList<Exercise> exercises){
         this(entityId);
         this.limitOfTime = limitOfTime;
         this.challenge = challenge;
+        this.exercises = exercises;
     }
 
-    private Kata(KataId entityId) {
+    private Kata(KataIdentity entityId) {
         super(entityId);
+    }
+
+    public Kata(KataIdentity id, Date date, Challenge challenge) {
+        super(id);
+        this.limitOfTime = limitOfTime;
+        this.challenge = challenge;
     }
 
     public void updateChallenge(Challenge challenge){
@@ -42,8 +50,8 @@ public class Kata extends Entity<KataId> {
         this.exercises.remove(exercise);
     }
 
-    public static Kata from(KataId kataId, List<Exercise> exercises, Date limitOfTime, Challenge challenge){
-        var kata = new Kata(kataId);
+    public static Kata from(KataIdentity kataIdentity, List<Exercise> exercises, Date limitOfTime, Challenge challenge){
+        var kata = new Kata(kataIdentity);
         kata.exercises = exercises;
         kata.limitOfTime = limitOfTime;
         kata.challenge = challenge;
