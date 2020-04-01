@@ -37,6 +37,8 @@ public class UpdateStudentTest {
                 new Name("raul andres alzate")
         );
 
+        Assertions.assertEquals("training.team.updatestudent.name", updateStudent.type);
+
         Assertions.assertEquals(TeamIdentity.of("xxx-yyy-zzz"), updateStudent.getTeamIdentity());
         Assertions.assertEquals(StudentIdentity.of("yyy-fff-xxx"), updateStudent.getStudentIdentity());
         Assertions.assertEquals("raul andres alzate", updateStudent.getName().value());
@@ -52,6 +54,8 @@ public class UpdateStudentTest {
                 new Gender(Gender.Type.M)
         );
 
+        Assertions.assertEquals("training.team.updatestudent.gender", updateStudent.type);
+
         Assertions.assertEquals(TeamIdentity.of("xxx-yyy-zzz"), updateStudent.getTeamIdentity());
         Assertions.assertEquals(StudentIdentity.of("yyy-fff-xxx"), updateStudent.getStudentIdentity());
         Assertions.assertNull(updateStudent.getName());
@@ -66,6 +70,8 @@ public class UpdateStudentTest {
                 StudentIdentity.of("yyy-fff-xxx"),
                 new DateOfBirth(9,3,1988)
         );
+
+        Assertions.assertEquals("training.team.updatestudent.dateofbirth", updateStudent.type);
 
         Assertions.assertEquals(TeamIdentity.of("xxx-yyy-zzz"), updateStudent.getTeamIdentity());
         Assertions.assertEquals(StudentIdentity.of("yyy-fff-xxx"), updateStudent.getStudentIdentity());

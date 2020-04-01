@@ -34,15 +34,30 @@ public class UpdateStudent extends Command {
     }
 
     public UpdateStudent(TeamIdentity teamIdentity, StudentIdentity studentIdentity, Name name) {
-       this(teamIdentity, studentIdentity, name, null, null);
+        super("training.team.updatestudent.name");
+        this.teamIdentity = teamIdentity;
+        this.studentIdentity = studentIdentity;
+        this.name = name;
+        this.gender = null;
+        this.dateOfBirth = null;
     }
 
     public UpdateStudent(TeamIdentity teamIdentity, StudentIdentity studentIdentity, Gender gender) {
-        this(teamIdentity, studentIdentity, null, gender, null);
+        super("training.team.updatestudent.gender");
+        this.teamIdentity = teamIdentity;
+        this.studentIdentity = studentIdentity;
+        this.name = null;
+        this.gender = gender;
+        this.dateOfBirth = null;
     }
 
     public UpdateStudent(TeamIdentity teamIdentity, StudentIdentity studentIdentity, DateOfBirth dateOfBirth) {
-        this(teamIdentity, studentIdentity, null, null, dateOfBirth);
+        super("training.team.updatestudent.dateofbirth");
+        this.teamIdentity = teamIdentity;
+        this.studentIdentity = studentIdentity;
+        this.name = null;
+        this.gender = null;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Name getName() {
