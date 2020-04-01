@@ -13,6 +13,7 @@ public class Gender implements ValueObject<String> {
         return type.name();
     }
 
+
     public enum Type {
         M, F
     }
