@@ -1,0 +1,15 @@
+co/com/sofka/training/routine/RoutineTest.class
+co/com/sofka/training/team/commands/UpdateTeamTest.class
+co/com/sofka/training/team/queries/TopStudentTest.class
+co/com/sofka/training/AggregateEventTest.class
+co/com/sofka/training/team/queries/AllTest.class
+co/com/sofka/training/team/commands/ChangeScoreOfStudentTest.class
+co/com/sofka/training/routine/KataTest.class
+co/com/sofka/training/team/commands/CreateTeamTest.class
+co/com/sofka/training/team/commands/AddNewStudentTest.class
+co/com/sofka/training/team/StudentTest.class
+co/com/sofka/training/team/queries/ByStudentIdentityTest.class
+co/com/sofka/training/team/commands/DeleteStudentTest.class
+co/com/sofka/training/team/commands/UpdateStudentTest.class
+co/com/sofka/training/team/TeamTest.class
+co/com/sofka/training/team/queries/ByTeamIdentityTest.class
