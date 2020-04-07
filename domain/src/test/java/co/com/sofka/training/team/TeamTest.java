@@ -101,8 +101,8 @@ public class TeamTest extends AggregateEventTest<TeamIdentity> {
                 .filter(e -> e.name.value().equals("raul"))
                 .findFirst().orElseThrow();
 
-        Assertions.assertEquals(10, updateScoreOfStudent.getScore().value().get("point"));
-        Assertions.assertEquals(10, studentUpdate.score.value().get("point"));
+        Assertions.assertEquals(10, updateScoreOfStudent.getScore().value().points());
+        Assertions.assertEquals(10, studentUpdate.score.value().points());
     }
 
     @Test

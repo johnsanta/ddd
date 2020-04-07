@@ -16,7 +16,7 @@ class StudentTest {
     void updateScore() {
         var student = newStudent();
         student.updateScore(new Score(10));
-        Assertions.assertEquals(10, student.score.value().get("point"));
+        Assertions.assertEquals(10, student.score.value().points());
     }
 
     @Test

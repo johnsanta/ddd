@@ -4,28 +4,33 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
-import java.util.Objects;
 
-public class Score implements ValueObject<Map<String, Object>> {
+public class Score implements ValueObject<Score.Values> {
 
-    private final int point;
+    private final int points;
     private final Date lastDate;
 
-    public Score(int point){
-        this.point = point;
-        if(point < 0){
+    public Score(int points){
+        this.points = points;
+        if(points < 0){
             throw new IllegalArgumentException("No allow the negative value");
         }
         this.lastDate = Calendar.getInstance().getTime();
     }
 
     @Override
-    public Map<String, Object> value() {
-        return Map.of(
-                "point", point,
-                "lastDate", lastDate.getTime()
-        );
+    public Values value() {
+        return new Values(){
+            @Override
+            public int points() { return points; }
+            @Override
+            public long time() { return lastDate.getTime(); }
+        };
+    }
+
+    public interface Values {
+        int points();
+        long time();
     }
 
 }

@@ -4,9 +4,9 @@ import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.domain.generic.EventBehavior;
 import co.com.sofka.domain.generic.Identity;
+import co.com.sofka.training.Name;
 import co.com.sofka.training.team.events.*;
 import co.com.sofka.training.team.values.*;
-import co.com.sofka.training.Name;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,29 +15,29 @@ import java.util.Set;
 public class Team extends AggregateEvent<TeamIdentity> {
     protected Name name;
     protected Set<Student> students;
-
     public Team(TeamIdentity identity, Name name) {
         this(identity);
         appendChange(new CreatedTeam(name, new HashSet<>())).apply();
     }
 
-    private Team(TeamIdentity identity){
+    private Team(TeamIdentity identity) {
         super(identity);
         subscribe(new TeamBehavior(this));
     }
 
-    public static Team from(TeamIdentity aggregateId, List<DomainEvent> list){
+    public static Team from(TeamIdentity aggregateId, List<DomainEvent> list) {
         Team team = new Team(aggregateId);
         list.forEach(team::applyEvent);
         return team;
     }
 
+
     public void addNewStudent(Name name, Gender gender, DateOfBirth dateOfBirth) {
         StudentIdentity studentIdentity = new StudentIdentity();
-        appendChange(new AddedStudent(studentIdentity, name,  gender,  dateOfBirth)).apply();
+        appendChange(new AddedStudent(studentIdentity, name, gender, dateOfBirth)).apply();
     }
 
-    public void removeStudent(StudentIdentity studentIdentity){
+    public void removeStudent(StudentIdentity studentIdentity) {
         appendChange(new RemovedStudent(studentIdentity)).apply();
     }
 
@@ -46,11 +46,19 @@ public class Team extends AggregateEvent<TeamIdentity> {
     }
 
     public void updateStudentName(StudentIdentity studentIdentity, Name name) {
-        appendChange(new UpdatedStudent( studentIdentity,  name)).apply();
+        appendChange(new UpdatedStudent(studentIdentity, name)).apply();
     }
 
     public void applyScoreToStudent(StudentIdentity studentIdentity, Score score) {
-        appendChange(new UpdateScoreOfStudent( studentIdentity, score)).apply();
+        appendChange(new UpdateScoreOfStudent(studentIdentity, score)).apply();
+    }
+
+    public Set<Student> students() {
+        return students;
+    }
+
+    public String name() {
+        return name.value();
     }
 
 
@@ -77,9 +85,9 @@ public class Team extends AggregateEvent<TeamIdentity> {
             give((UpdatedName event) -> entity.name = event.getNewName());
 
             give((UpdatedStudent event) -> {
-                 var studentUpdate = getStudentByIdentity(entity, event.getStudentIdentity());
-                 studentUpdate.updateName(event.getName());
-              });
+                var studentUpdate = getStudentByIdentity(entity, event.getStudentIdentity());
+                studentUpdate.updateName(event.getName());
+            });
 
             give((UpdateScoreOfStudent event) -> {
                 var studentUpdate = getStudentByIdentity(entity, event.getStudentIdentity());

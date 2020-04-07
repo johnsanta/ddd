@@ -15,7 +15,7 @@ public class DateOfBirth  implements ValueObject<String> {
         cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, year);
         cal.set(Calendar.MONTH, month - 1);
-        cal.set(Calendar.DATE, day);
+        cal.set(Calendar.DAY_OF_MONTH, day);
         if(cal.after(Calendar.getInstance())){
             throw new IllegalArgumentException("No valid the date of birth");
         }
@@ -24,7 +24,7 @@ public class DateOfBirth  implements ValueObject<String> {
 
     private String generateFormat(){
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+        formatter.setTimeZone(TimeZone.getTimeZone("America/Bogota"));
         return formatter.format(cal.getTime());
     }
 

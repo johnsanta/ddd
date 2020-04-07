@@ -7,7 +7,6 @@ import co.com.sofka.training.team.values.Gender;
 import co.com.sofka.training.team.values.Score;
 import co.com.sofka.training.team.values.StudentIdentity;
 
-
 public class Student extends Entity<StudentIdentity> {
 
     protected Name name;
@@ -27,6 +26,30 @@ public class Student extends Entity<StudentIdentity> {
         super(studentIdentity);
     }
 
+    public static Student form(StudentIdentity studentIdentity, Name name, Gender gender, DateOfBirth dateOfBirth){
+        var student = new Student(studentIdentity);
+        student.name = name;
+        student.gender = gender;
+        student.dateOfBirth = dateOfBirth;
+        return student;
+    }
+
+    public String name() {
+        return name.value();
+    }
+
+    public String gender() {
+        return gender.value();
+    }
+
+    public String dateOfBirth() {
+        return dateOfBirth.value();
+    }
+
+    public Score.Values score() {
+        return score.value();
+    }
+
     public void updateScore(Score score){
         this.score = score;
     }
@@ -41,14 +64,6 @@ public class Student extends Entity<StudentIdentity> {
 
     public void updateGender(Gender gender){
         this.gender = gender;
-    }
-
-    public static Student form(StudentIdentity studentIdentity, Name name, Gender gender, DateOfBirth dateOfBirth){
-        var student = new Student(studentIdentity);
-        student.name = name;
-        student.gender = gender;
-        student.dateOfBirth = dateOfBirth;
-        return student;
     }
 
     @Override

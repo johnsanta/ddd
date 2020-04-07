@@ -1,6 +1,5 @@
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/events/CreatedTeam.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/values/TeamIdentity.java
-/home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/generic/Name.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/Student.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/queries/All.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/routine/values/Exercise.java
@@ -24,6 +23,7 @@
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/events/UpdateScoreOfStudent.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/routine/values/RoutineIdentity.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/values/StudentIdentity.java
+/home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/Name.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/queries/TopStudent.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/Team.java
 /home/raul.alzate/Documentos/training/example-domain/domain/src/main/java/co/com/sofka/training/team/events/AddedStudent.java

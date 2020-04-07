@@ -21,6 +21,6 @@ public class ChangeScoreOfStudentTest {
 
         Assertions.assertEquals(TeamIdentity.of("xxx-yyy-zzz"), changeScoreOfStudent.getTeamIdentity());
         Assertions.assertEquals(StudentIdentity.of("yyy-fff-xxx"), changeScoreOfStudent.getStudentIdentity());
-        Assertions.assertEquals(12, changeScoreOfStudent.getScore().value().get("point"));
+        Assertions.assertEquals(12, changeScoreOfStudent.getScore().value().points());
     }
 }

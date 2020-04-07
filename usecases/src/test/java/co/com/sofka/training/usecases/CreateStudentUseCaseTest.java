@@ -4,9 +4,14 @@ import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.training.Name;
 import co.com.sofka.training.team.events.AddedStudent;
 import co.com.sofka.training.team.events.CreatedTeam;
-import co.com.sofka.training.usecases.createStudent.CreateStudentUseCase;
-import co.com.sofka.training.usecases.createStudent.CreateStudentRequest;
+import co.com.sofka.training.team.values.DateOfBirth;
+import co.com.sofka.training.team.values.Gender;
+import co.com.sofka.training.team.values.StudentIdentity;
+import co.com.sofka.training.usecases.createstudent.CreateStudentUseCase;
+import co.com.sofka.training.usecases.createstudent.CreateStudentRequest;
+import co.com.sofka.training.usecases.createstudent.NoMoreStudentAllowed;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -15,26 +20,33 @@ import java.util.HashSet;
 public class CreateStudentUseCaseTest {
 
     @Test
+    @DisplayName("a new student is added")
     public void executeSuccess(){
-        //preparar
+        //arrange
         var usecase = new CreateStudentUseCase(Arrays.asList(
-                new CreatedTeam(new Name("team name"), new HashSet<>())
+                new CreatedTeam(new Name("team name"), new HashSet<>()),
+                new AddedStudent(
+                        StudentIdentity.of("xxx-xxx-111"),
+                        new Name("student 1"),
+                        new Gender(Gender.Type.M), new DateOfBirth(9,3,1988)
+                )
         ));
 
-        var request = new CreateStudentRequest();
-        request.setDateOfBirthDay(9);
-        request.setDateOfBirthMonth(3);
-        request.setDateOfBirthYear(1988);
-        request.setName("raul andres");
-        request.setGender("M");
-        request.setTeamId("xxx-xxx");
+        var request = CreateStudentRequest.CreateStudentRequestBuilder.aCreateStudentRequest()
+                .withDateOfBirthDay(9)
+                .withDateOfBirthMonth(3)
+                .withDateOfBirthYear(1988)
+                .withGender("M")
+                .withName("raul andres")
+                .withTeamId("xxx-xxx")
+                .build();
 
-        //actuar
-        var respose = UseCaseHandler.getInstance().syncExecutor(usecase, request);
+        //act
+        var response = UseCaseHandler.getInstance().syncExecutor(usecase, request);
 
-        //verificar
-        Assertions.assertTrue(respose.isPresent());
-        respose.ifPresent((res) -> {
+        //assert
+        Assertions.assertTrue(response.isPresent());
+        response.ifPresent((res) -> {
             var events = res.getDomainEvents();
             AddedStudent event = (AddedStudent)events.get(0);
             Assertions.assertEquals("xxx-xxx", event.aggregateRootId().value());
@@ -47,21 +59,45 @@ public class CreateStudentUseCaseTest {
     }
 
     @Test
+    @DisplayName("valid error when the size has been overcome")
     public void executeError(){
-        //preparar
         var usecase = new CreateStudentUseCase(Arrays.asList(
-                new CreatedTeam(new Name("team name"), new HashSet<>())
+                new CreatedTeam(new Name("team name"), new HashSet<>()),
+                new AddedStudent(
+                        StudentIdentity.of("xxx-xxx-111"),
+                        new Name("student 1"),
+                        new Gender(Gender.Type.M), new DateOfBirth(9,3,1988)
+                ),
+                new AddedStudent(
+                        StudentIdentity.of("xxx-xxx-222"),
+                        new Name("student 2"),
+                        new Gender(Gender.Type.M), new DateOfBirth(9,3,1988)
+                ),
+                new AddedStudent(
+                        StudentIdentity.of("xxx-xxx-333"),
+                        new Name("student 3"),
+                        new Gender(Gender.Type.M), new DateOfBirth(9,3,1988)
+                ), new AddedStudent(
+                        StudentIdentity.of("xxx-xxx-444"),
+                        new Name("student 4"),
+                        new Gender(Gender.Type.M), new DateOfBirth(9,3,1988)
+                ),
+                new AddedStudent(
+                        StudentIdentity.of("xxx-xxx-555"),
+                        new Name("student 5"),
+                        new Gender(Gender.Type.M), new DateOfBirth(9,3,1988)
+                )
         ));
 
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            var request = new CreateStudentRequest();
-            request.setName("");
-            UseCaseHandler.getInstance().syncExecutor(usecase, request);
-        });
-
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            var request = new CreateStudentRequest();
-            request.setGender("");
+        Assertions.assertThrows(NoMoreStudentAllowed.class, () -> {
+            var request = CreateStudentRequest.CreateStudentRequestBuilder.aCreateStudentRequest()
+                    .withDateOfBirthDay(9)
+                    .withDateOfBirthMonth(3)
+                    .withDateOfBirthYear(1988)
+                    .withGender("M")
+                    .withName("raul andres")
+                    .withTeamId("xxx-xxx")
+                    .build();
             UseCaseHandler.getInstance().syncExecutor(usecase, request);
         });
 

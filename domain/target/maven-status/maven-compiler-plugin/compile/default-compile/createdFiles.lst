@@ -1,7 +1,8 @@
 co/com/sofka/training/team/commands/UpdateStudent.class
 co/com/sofka/training/team/Student.class
+co/com/sofka/training/team/values/Score$1.class
 co/com/sofka/training/team/commands/AddNewStudent.class
-co/com/sofka/generic/Name.class
+co/com/sofka/training/team/values/Score$Values.class
 co/com/sofka/training/team/values/Score.class
 co/com/sofka/training/team/values/Gender$Type.class
 co/com/sofka/training/team/events/UpdateScoreOfStudent.class
@@ -14,6 +15,7 @@ co/com/sofka/training/team/commands/ChangeScoreOfStudent.class
 co/com/sofka/training/team/queries/ByTeamIdentity.class
 co/com/sofka/training/routine/values/RoutineIdentity.class
 co/com/sofka/training/team/queries/ByStudentIdentity.class
+co/com/sofka/training/Name.class
 co/com/sofka/training/routine/Routine$RoutineBehaviors.class
 co/com/sofka/training/routine/Routine.class
 co/com/sofka/training/team/Team.class
