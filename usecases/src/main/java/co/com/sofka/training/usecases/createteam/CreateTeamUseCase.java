@@ -1,6 +1,5 @@
 package co.com.sofka.training.usecases.createteam;
 
-import co.com.sofka.business.generic.UnexpectedException;
 import co.com.sofka.business.generic.UseCase;
 import co.com.sofka.business.support.ResponseEvents;
 import co.com.sofka.training.Name;
