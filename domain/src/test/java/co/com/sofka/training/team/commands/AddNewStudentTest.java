@@ -1,5 +1,6 @@
 package co.com.sofka.training.team.commands;
 
+import co.com.sofka.training.team.values.DateOfBirth;
 import co.com.sofka.training.team.values.Gender;
 import co.com.sofka.training.team.values.TeamIdentity;
 import co.com.sofka.training.Name;
@@ -14,7 +15,8 @@ public class AddNewStudentTest {
                 TeamIdentity.of("xxx-yyy-zzz"),
                 new Name("raul andres alzate"),
                 new Gender(Gender.Type.M),
-                dateOfBirth);
+                new DateOfBirth(31,01,1996)
+        );
 
         Assertions.assertEquals("training.team.addnewstudent", addNewStudent.type);
 

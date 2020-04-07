@@ -18,6 +18,6 @@ public class ApplicationCommandExecutor extends CommandExecutor {
     }
 
     private void initialize(){
-        add(new CreateStudentHandle(subscriberEvent));
+        //add(new CreateStudentHandle(subscriberEvent));
     }
 }
