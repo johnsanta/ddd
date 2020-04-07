@@ -13,8 +13,8 @@ public class AddNewStudentTest {
         var addNewStudent = new AddNewStudent(
                 TeamIdentity.of("xxx-yyy-zzz"),
                 new Name("raul andres alzate"),
-                new Gender(Gender.Type.M)
-        );
+                new Gender(Gender.Type.M),
+                dateOfBirth);
 
         Assertions.assertEquals("training.team.addnewstudent", addNewStudent.type);
 
